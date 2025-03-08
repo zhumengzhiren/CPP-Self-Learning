@@ -14,8 +14,11 @@ namespace algebra {
         if (min >= max)
             throw std::logic_error("min cannot be greater than max");
 
+        // random number generator
         std::random_device rd;
+        // Mersenne Twister engine with a seed from random device
         std::mt19937 gen(rd());
+        // Generate random numbers between min and max
         std::uniform_real_distribution<double> dis(min, max);
 
         Matrix matrix(n, Vector(m));
