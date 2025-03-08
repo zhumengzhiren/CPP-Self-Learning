@@ -1,0 +1,3 @@
+/Users/zhumengzhiren/Courses/Cpp-self-learning/AUT-1400-2/AP1400-2-HW1-main/build/CMakeFiles/main.dir
+/Users/zhumengzhiren/Courses/Cpp-self-learning/AUT-1400-2/AP1400-2-HW1-main/build/CMakeFiles/edit_cache.dir
+/Users/zhumengzhiren/Courses/Cpp-self-learning/AUT-1400-2/AP1400-2-HW1-main/build/CMakeFiles/rebuild_cache.dir

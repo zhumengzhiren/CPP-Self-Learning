@@ -3,7 +3,7 @@
 #include "gmock/gmock.h"
 #include "hw1.h"
 
-/*
+
 TEST(HW1Test, ZEROS) {
     Matrix matrix{algebra::zeros(5, 6)};
 
@@ -29,7 +29,7 @@ TEST(HW1Test, ONES) {
         for (const auto& elem : row)
             EXPECT_DOUBLE_EQ(elem, 1);
 }
-
+/*
 TEST(HW1Test, RANDOM1) {
     using ::testing::AllOf;
     using ::testing::Ge;

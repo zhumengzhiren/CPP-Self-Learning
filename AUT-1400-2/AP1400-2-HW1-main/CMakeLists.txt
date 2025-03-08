@@ -17,3 +17,7 @@ target_link_libraries(main
         GTest::Main
 )
 
+target_link_options(main PRIVATE
+  "-rpath" "/opt/anaconda3/lib"
+)
+
