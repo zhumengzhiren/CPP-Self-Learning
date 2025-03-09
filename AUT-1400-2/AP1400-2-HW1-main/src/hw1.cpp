@@ -199,6 +199,33 @@ namespace algebra {
         }
         return det;
     }
+
+    Matrix inverse(const Matrix& matrix) {
+        // Check if the matrix is empty
+        if (matrix.empty())
+            return Matrix();
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Check if the matrix is square
+        if (rows != cols)
+            throw std::logic_error("non-square matrix");
+        // Calculate the determinant of the input matrix
+        double det = determinant(matrix);
+        // Check if the determinant is zero
+        if (det == 0)
+            throw std::logic_error("matrix is singular, cannot be inverted");
+        size_t n = rows;
+        Matrix adj(n, Vector(n));
+        for (size_t i = 0; i < n; i++) {
+            for (size_t j = 0; j < n; j++) {
+                Matrix m = minor(matrix, i, j);
+                double minor_det = determinant(m);
+                adj[j][i] = (i + j) % 2 == 0 ? minor_det : -minor_det;
+            }
+        }
+        return multiply(adj, 1 / det);
+    }
 }
 
 // main 函数示例
