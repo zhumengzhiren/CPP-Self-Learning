@@ -297,7 +297,7 @@ namespace algebra {
         return result;
     }
 
-    Matrix ero_sum(const Matrix& matrix, size_t r1, size_t r2, double c) {
+    Matrix ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2) {
         // Check if the matrix is empty
         if (matrix.empty())
             return Matrix();
@@ -314,37 +314,36 @@ namespace algebra {
             result[r2][j] += c * result[r1][j];
         return result;
     }
+
+    Matrix upper_triangular(const Matrix& matrix) {
+        // Check if the matrix is empty
+        if (matrix.empty())
+            return Matrix();
+        // Check if the matrix is square
+        if (matrix.size() != matrix[0].size())
+            throw std::logic_error("non-square matrix");
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Initialize the result matrix with the same size as the input matrix
+        Matrix result = matrix;
+        // Use nested loops to iterate over the rows and columns of the input matrix
+        for (size_t i = 0; i < rows; ++i) {
+            size_t pivot = i;
+            // Find the pivot element in the current column
+            while (pivot < rows && result[pivot][i] == 0)
+                ++pivot;
+            // Check if the pivot element is zero
+            if (pivot == rows)
+                continue;
+            // Swap the rows to move the pivot element to the current row
+            result = ero_swap(result, i, pivot);
+            // Eliminate the elements below the pivot element
+            for (size_t j = i + 1; j < rows; ++j) {
+                double factor = result[j][i] / result[i][i];
+                result = ero_sum(result, i, -factor, j);
+            }
+        }
+        return result;
+    }
 }
-
-// main 函数示例
-// int main() {
-//     using namespace algebra;
-
-//     // 测试 zeros 函数
-//     Matrix mat1 = zeros(2, 3);
-//     std::cout << "zeros(2,3):\n";
-//     show(mat1);
-//     std::cout << std::endl;
-
-//     // 测试 random 函数（生成 2x3 矩阵，数值范围 [0, 1]）
-//     Matrix mat2 = random(2, 3, 0.0, 1.0);
-//     std::cout << "random(2,3, 0.0, 1.0):\n";
-//     show(mat2);
-//     std::cout << std::endl;
-
-//     // 测试单行矩阵
-//     Matrix mat3 = zeros(1, 4);
-//     mat3[0][0] = 3.1415;
-//     mat3[0][1] = 2.71828;
-//     std::cout << "单行矩阵:\n";
-//     show(mat3);
-//     std::cout << std::endl;
-
-//     // 测试空矩阵
-//     Matrix mat4 = zeros(0, 5);
-//     std::cout << "空矩阵 (0x5):\n";
-//     show(mat4);
-
-//     return 0;
-// }
-

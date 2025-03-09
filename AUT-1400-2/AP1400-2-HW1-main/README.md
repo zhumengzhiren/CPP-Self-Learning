@@ -1,3 +1,8 @@
+# Notes
+- To implement the 'random' function, should first initialize a random device and then use it as a seed for the random number generator. The random number generator should be a uniform distribution generator between the min and max values.
+- Since we are implementing a library, we should throw a logic error if the user tries to do something that is not allowed. For example, if the user tries to calculate the determinant of a non-square matrix, we should throw a logic error.
+- See the comments in the code for more information.
+
 # Advanced Programming - HW1
 <p  align="center"> <b>Homework 1 - Spring 2022 Semester <br> Deadline: Sunday Esfand 1st - 11:59 pm</b> </p>
 
