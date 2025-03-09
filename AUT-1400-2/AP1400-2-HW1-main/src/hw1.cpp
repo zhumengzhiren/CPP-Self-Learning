@@ -38,7 +38,6 @@ namespace algebra {
         }
         // Get the number of columns using size
         size_t cols = matrix[0].size();
-        // Set the precision to 3 decimal points
         for (const auto& row : matrix) {
             // Use ostringstream to format the output
             std::ostringstream oss;
