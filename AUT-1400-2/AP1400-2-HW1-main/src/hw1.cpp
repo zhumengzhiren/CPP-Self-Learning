@@ -169,6 +169,36 @@ namespace algebra {
         }
         return result;
     }
+
+    double determinant(const Matrix& matrix) {
+        // Check if the matrix is empty, return 1 for the determinant of an empty matrix
+        if (matrix.empty())
+            return 1;
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Check if the matrix is square
+        if (rows != cols)
+            throw std::logic_error("non-square matrix");
+        // Base case for 1x1 matrix
+        if (rows == 1)
+            return matrix[0][0];
+        // Base case for 2x2 matrix
+        if (rows == 2)
+            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+        // Initialize the determinant value
+        double det = 0;
+        // Iterate over the first row of the matrix
+        for (size_t i = 0; i < cols; ++i) {
+            // Calculate the minor matrix for the current element
+            Matrix m = minor(matrix, 0, i);
+            // Calculate the determinant of the minor matrix
+            double minor_det = determinant(m);
+            // Add the product of the element and the determinant of the minor matrix
+            det += (i % 2 == 0 ? 1 : -1) * matrix[0][i] * minor_det;
+        }
+        return det;
+    }
 }
 
 // main 函数示例
