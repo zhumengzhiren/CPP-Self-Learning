@@ -66,6 +66,7 @@ namespace algebra {
     }
 
     Matrix multiply(const Matrix& matrix1, const Matrix& matrix2) {
+        // Notify to avoid segmentation fault by checking the size of the matrix before accessing the elements
         // Get the number of rows and columns for both matrices, add check for empty matrices to avoid undefined behavior
         size_t rows1 = matrix1.size();
         size_t cols1 = (rows1 > 0) ? matrix1[0].size() : 0;
