@@ -29,7 +29,7 @@ TEST(HW1Test, ONES) {
         for (const auto& elem : row)
             EXPECT_DOUBLE_EQ(elem, 1);
 }
-/*
+
 TEST(HW1Test, RANDOM1) {
     using ::testing::AllOf;
     using ::testing::Ge;
@@ -164,7 +164,7 @@ TEST(HW1Test, TRANSPOSE) {
         for (size_t j{}; j < transpose[i].size(); j++)
             EXPECT_DOUBLE_EQ(transpose[i][j], matrix[j][i]);
 }
-
+/*
 TEST(HW1Test, MINOR1) {
     Matrix matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
     Matrix minor = algebra::minor(matrix, 1, 2);

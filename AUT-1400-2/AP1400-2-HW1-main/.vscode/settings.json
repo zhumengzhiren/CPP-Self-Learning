@@ -59,6 +59,7 @@
         "__tuple": "cpp",
         "bit": "cpp",
         "memory": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "iostream": "cpp"
     }
 }
