@@ -110,7 +110,7 @@ namespace algebra {
         // Check if the dimensions of the matrices are the same
         if (rows1 != rows2 || cols1 != cols2)
             throw std::logic_error("matrices with different dimensions cannot be summed");
-        // Check if the matrices are empty
+        // Check if the matrices are empty, return an empty matrix
         if (rows1 == 0 || cols1 == 0 || rows2 == 0 || cols2 == 0)
             return Matrix();
         // Initialize the result matrix with the same size as the input matrices
