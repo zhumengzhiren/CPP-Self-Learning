@@ -261,6 +261,59 @@ namespace algebra {
         }
         return result;
     }
+
+    Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2) {
+        // Check if the matrix is empty
+        if (matrix.empty())
+            return Matrix();
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Check if the row indices are within the bounds of the matrix
+        if (r1 >= rows || r2 >= rows)
+            throw std::out_of_range("r1 or r2 index out of range");
+        // Initialize the result matrix with the same size as the input matrix
+        Matrix result = matrix;
+        // Swap the rows
+        swap(result[r1], result[r2]);
+        return result;
+    }
+
+    Matrix ero_multiply(const Matrix& matrix, size_t r, double c) {
+        // Check if the matrix is empty
+        if (matrix.empty())
+            return Matrix();
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Check if the row index is within the bounds of the matrix
+        if (r >= rows)
+            throw std::out_of_range("r index out of range");
+        // Initialize the result matrix with the same size as the input matrix
+        Matrix result = matrix;
+        // Multiply the specified row by the constant
+        for (size_t j = 0; j < cols; ++j)
+            result[r][j] *= c;
+        return result;
+    }
+
+    Matrix ero_sum(const Matrix& matrix, size_t r1, size_t r2, double c) {
+        // Check if the matrix is empty
+        if (matrix.empty())
+            return Matrix();
+        // Get the number of rows and columns of the input matrix
+        size_t rows = matrix.size();
+        size_t cols = matrix[0].size();
+        // Check if the row indices are within the bounds of the matrix
+        if (r1 >= rows || r2 >= rows)
+            throw std::out_of_range("r1 or r2 index out of range");
+        // Initialize the result matrix with the same size as the input matrix
+        Matrix result = matrix;
+        // Add the product of the specified row and constant to another row
+        for (size_t j = 0; j < cols; ++j)
+            result[r2][j] += c * result[r1][j];
+        return result;
+    }
 }
 
 // main 函数示例
