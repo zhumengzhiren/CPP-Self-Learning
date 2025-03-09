@@ -23,6 +23,7 @@ namespace algebra {
     Matrix minor(const Matrix& matrix, size_t row, size_t col);
     double determinant(const Matrix& matrix);
     Matrix inverse(const Matrix& matrix);
+    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, size_t axis);
 }
 
 #endif //AP_HW1_H

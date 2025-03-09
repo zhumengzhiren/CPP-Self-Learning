@@ -226,6 +226,41 @@ namespace algebra {
         }
         return multiply(adj, 1 / det);
     }
+
+    Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, size_t axis) {
+        // Check if the matrices are empty
+        if (matrix1.empty() && matrix2.empty())
+            return Matrix();
+        // Get the number of rows and columns for both matrices
+        size_t rows1 = matrix1.size();
+        size_t cols1 = (rows1 > 0) ? matrix1[0].size() : 0;
+        size_t rows2 = matrix2.size();
+        size_t cols2 = (rows2 > 0) ? matrix2[0].size() : 0;
+        // Check if the matrices are empty
+        if (rows1 == 0 && rows2 == 0)
+            return Matrix();
+        // Check if the dimensions of the matrices are the same along the specified axis
+        if (axis == 0 && cols1 != cols2)
+            throw std::logic_error("matrices with different number of columns cannot be concatenated along axis 0");
+        if (axis == 1 && rows1 != rows2)
+            throw std::logic_error("matrices with different number of rows cannot be concatenated along axis 1");
+        // Initialize the result matrix
+        Matrix result;
+        // Concatenate along the rows (axis 0)
+        if (axis == 0) {
+            result = matrix1;
+            result.insert(result.end(), matrix2.begin(), matrix2.end());
+        }
+        // Concatenate along the columns (axis 1)
+        else if (axis == 1) {
+            for (size_t i = 0; i < rows1; ++i) {
+                Vector row = matrix1[i];
+                row.insert(row.end(), matrix2[i].begin(), matrix2[i].end());
+                result.push_back(row);
+            }
+        }
+        return result;
+    }
 }
 
 // main 函数示例
